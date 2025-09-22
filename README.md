@@ -1,6 +1,6 @@
 <h1 align="left"> :blue_book: About</h1> 
 
-This is my BSPWM dotfiles 
+This is my BSPWM setup for 2 monitors
 
 </br>
 
@@ -20,7 +20,7 @@ This is my BSPWM dotfiles
 ![gallery](demo/1.png)
 ![gallery](demo/2.png)
 ![gallery](demo/3.png)
-
+![gallery](demo/4.png)
 
 ## 🚀 Features
 * Customizing software on the system.
