@@ -21,6 +21,7 @@ This is my BSPWM dotfiles
 ![gallery](demo/2.png)
 ![gallery](demo/3.png)
 
+
 ## 🚀 Features
 * Customizing software on the system.
 * Convenient custom configuration of Firefox.
