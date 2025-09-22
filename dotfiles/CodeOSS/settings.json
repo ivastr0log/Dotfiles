@@ -1,0 +1,85 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "tabnine.experimentalAutoImports": true,
+    "workbench.colorTheme": "Kanagawa Wave",
+    "editor.minimap.enabled": false,
+    "glassit.alpha": 230,
+    "workbench.editorAssociations": {
+        "*.db": "sqlite-viewer.view"
+    },
+    "explorer.fileNesting.patterns": {
+        "*.ts": "${capture}.js",
+        "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+        "*.jsx": "${capture}.js",
+        "*.tsx": "${capture}.ts",
+        "tsconfig.json": "tsconfig.*.json",
+        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
+        "*.sqlite": "${capture}.${extname}-*",
+        "*.db": "${capture}.${extname}-*",
+        "*.sqlite3": "${capture}.${extname}-*",
+        "*.db3": "${capture}.${extname}-*",
+        "*.sdb": "${capture}.${extname}-*",
+        "*.s3db": "${capture}.${extname}-*"
+    },
+    "explorer.confirmDelete": false,
+
+    "workbench.sideBar.location": "right",
+    "workbench.statusBar.visible": true,
+
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.matchBrackets": "never",
+    "editor.occurrencesHighlight": "off",
+    "editor.overviewRulerBorder": false,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.stickyScroll.enabled": false, 
+    "editor.fontSize": 18,
+
+    "breadcrumbs.enabled": false,
+
+    "workbench.activityBar.location": "hidden",
+    
+    "chat.commandCenter.enabled": false,
+    "workbench.layoutControl.enabled": false,
+    "window.customTitleBarVisibility": "never",
+    "window.menuBarVisibility": "toggle",
+    
+    "workbench.tips.enabled": false,
+
+    "files.insertFinalNewline": true,
+
+    "editor.lightbulb.enabled": "off",
+    "editor.showFoldingControls": "never",
+
+    "editor.parameterHints.enabled": false,
+    "editor.hover.enabled": false,
+    "files.trimTrailingWhitespace": false,
+    "editor.links": false,
+
+    "editor.renderWhitespace": "none",
+    "editor.renderLineHighlight": "none",
+
+    "extensions.ignoreRecommendations": true,
+
+    "update.mode": "none",
+    "files.autoSave": "afterDelay",
+
+    "editor.fontFamily": "'JetBrains Mono', 'bold', bold",
+
+    "material-icon-theme.hidesExplorerArrows": true,
+    "workbench.tree.indent": 11,
+
+    "editor.lineNumbers": "relative",
+
+    "window.zoomLevel": 1.5,
+    "terminal.integrated.fontFamily": "'JetBrains Mono', 'bold', bold",
+
+    "explorer.decorations.badges": false,
+    "git.decorations.enabled": false,
+    "scm.diffDecorations": "none",
+    "python.analysis.typeCheckingMode": "basic",
+    "workbench.editor.showTabs": "multiple",
+    "window.titleBarStyle": "native",
+    "workbench.startupEditor": "none",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+}

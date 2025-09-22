@@ -1,0 +1,54 @@
+# Created by newuser for 5.9
+
+source ~/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+export EDITOR=nvim
+
+alias c='clear'
+alias ff='fastfetch'
+alias cm='cmatrix'
+alias rb='reboot'
+alias pw='poweroff'
+alias clock='tty-clock -c'
+alias g='git clone'
+
+alias n='nvim'
+alias ls='lsd -a'
+alias rm='rm -r'
+alias cd='z'
+
+
+alias mvenv='python3 -m venv .venv'
+alias av='source .venv/bin/activate'
+alias dv='deactivate'
+
+
+alias sMON='xrandr --output DP-2 --off && xrandr --output HDMI-0 --mode 2560x1440 --rate 144'
+
+
+alias iGPU='supergfxctl -m Integrated'
+alias hGPU='supergfxctl -m Hybrid'
+alias dGPU='supergfxctl -m AsusMuxDgpu'
+alias GPU='supergfxctl -g'
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+
+eval "$(starship init zsh)"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(zoxide init zsh)"
+
+eval "$(atuin init zsh)"
+
+
+. "$HOME/.local/bin/env"

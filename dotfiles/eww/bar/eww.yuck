@@ -1,0 +1,210 @@
+(defvar eww "eww -c $HOME/.config/eww")
+
+(defpoll fan-speed :interval "0.05s" "asusctl profile -p | grep is | grep -o '[^ ]*$'")
+(defpoll caps :interval "0.05s" "xset q | grep 'Caps Lock:' | awk '{print $4}'")
+(defpoll layout :interval "0.1s" "setxkbmap -query | grep layout | awk '{print $2}'")
+(defpoll ws :interval "0.01s" "bspc query --desktop focused -D --names")
+(defpoll music :interval "0.05s" "sh scripts/getmus.sh")
+(defpoll volume :interval "0.01s" "sh scripts/getvol.sh")
+(defpoll wifi_var :interval "5s" "sh scripts/getwifi.sh icon")
+(defpoll battery-perc :interval "30s" "sh scripts/get-battery.sh")
+(defpoll cpu-perc :interval "1s" "vmstat 1 2 | tail -n 1 | awk '{print 100 - $15}'") 
+(defpoll ram-perc :interval "1s" "sh scripts/getram.sh") 
+(defpoll temp-perc :interval "5s" "sh scripts/gettemp.sh") 
+(defpoll curr-time :interval "30s" "date '+%H:%M'")
+(defpoll curr-date :interval "60s" "date '+%d.%m.%Y'")
+
+(defwidget bar []
+    (box :orientation "h" 
+        (leftbar)
+        (centerbar)
+        (rightbar)
+    )
+)
+
+
+
+(defwidget leftbar []
+    (box :orientation "h" :space-evenly false :halign "start" :class "left" :spacing 2
+        "["
+        (launcher)
+        "]"
+        (left-separ)
+        (workspaces)
+        (right-separ)
+        "[ "
+        (music)
+        "]"
+    )
+)
+
+(defwidget left-separ []
+    (box :orientation "h" :space-evenly false :halign "start"
+        "["
+    )
+)
+
+(defwidget right-separ []
+    (box :orientation "h" :space-evenly false :halign "start"
+        "]"
+    )
+)
+
+(defwidget rightbar []
+    (box :orientation "h" :halign "end" :space-evenly false :class "right"
+        (keyboard)
+        (sidestuff)
+        "[ " (time) "| " (date)
+        "]"
+        "["
+        (power)
+        "]"
+    )
+)
+(defwidget pc-info []
+    (box :orietation "h" :halign "center" :class "pcinfo" :space-evenly false :spacing 15
+        "["
+        (temp)
+        (cpu)
+        (ram)
+        "|"
+        (fan)
+        "]"
+    )
+)
+
+(defwidget sidestuff []
+    (box :orientation "h" :halign "center" :class "side" :space-evenly false :spacing 5
+        "[ "
+        (wifi)
+        (volume-all)
+        "| "
+        (battery)
+        "]"
+    )
+)
+
+
+(defwidget centerbar [] 
+    (box :orientation "h" :space-evenly true :haligh "center"
+        (pc-info)
+    )
+)
+
+
+(defwidget workspaces []
+    (box :class "workspaces"
+        :orientation "h"
+        :space-evenly true
+        :halign "center"
+        
+        
+        (button :onclick "bspc desktop -f 1" :class "worksp1" {ws == 1 ? "" : ""})
+        (button :onclick "bspc desktop -f 2" :class "worksp2" {ws == 2 ? "" : ""})
+        (button :onclick "bspc desktop -f 3" :class "worksp3" {ws == 3 ? "" : ""})
+        (button :onclick "bspc desktop -f 4" :class "worksp4" {ws == 4 ? "" : ""})
+        (button :onclick "bspc desktop -f 5" :class "worksp5" {ws == 5 ? "" : ""})
+        (button :onclick "bspc desktop -f 6" :class "worksp1" {ws == 6 ? "" : ""})
+        (button :onclick "bspc desktop -f 7" :class "worksp2" {ws == 7 ? "" : ""})
+        (button :onclick "bspc desktop -f 8" :class "worksp3" {ws == 8 ? "" : ""})
+        (button :onclick "bspc desktop -f 9" :class "worksp4" {ws == 9 ? "" : ""})
+    )
+)
+
+;(defwidget workspaces []
+;    (literal :class "workspaces" :content workspace)
+;)
+
+(defwidget music []
+  (box :class "music"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+        {music != "" ? "  | ${music} " : "No music played "}))
+
+(defwidget volume-all []
+    (box :class "volume" :orientation "h" :space-evenly false :halign "center"
+        (button :onclick "pamixer --toggle-mute" "${volume} ")
+    )
+)
+
+(defwidget battery []
+    (box :orientation "h" :class "battery" :space-evenly false :halign "center"
+        "${battery-perc} "
+    )
+)
+
+
+(defwidget wifi []
+    (box :class "wifi" :orientation "h" :space-evenly false :halign "center"
+        (button :onclick "sh scripts/wifi.sh" wifi_var)
+    )
+)
+
+(defwidget cpu []
+    (box :class "cpu" :orientation "h" :space-evenly false :halign "center"
+        " ${cpu-perc}%"
+    )
+)
+
+(defwidget ram []
+    (box :class "ram" :orientation "h" :space-evenly false :halign "center"
+        " ${ram-perc} GiB"
+    )
+)
+
+(defwidget temp []
+    (box :class "temp" :orientation "h" :space-evenly false :halign "center"
+        " ${temp-perc}°C"
+    )
+)
+
+(defwidget time []
+    (box :class "time" :orientation "h" :space-evenly false :halign "start"
+        " ${curr-time} "
+    )
+)
+(defwidget date [] (box :class "date" :orientation "h" :space-evenly false :halign "start"
+        " ${curr-date} "
+    )
+)
+
+(defwidget launcher []
+    (box :class "launcher" :orientation "h" :halign "center"
+        (button :onclick "rofi -show drun" " ")
+    )
+)
+
+(defwidget power []
+    (box :class "power" :orientation "h" :halign "center"
+        (button :onclick "sh scripts/powermenu.sh" " ")
+    )
+)
+
+(defwidget keyboard []
+    (box :class "keyboard" :orientation "h" :halign "center"
+        {caps == "on" ? "[ ! ${layout} ]" : "[ ${layout} ]"}
+    )
+)
+
+
+(defwidget fan []
+    (box :orientation "h" :class "fan" :space-evenly false :halign "center"
+        (button :onclick "asusctl profile -n" fan-speed)
+    )
+)
+
+(defwindow bar
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "10px"
+                               :width "98%"
+                               :height "50px"
+                               :anchor "top center")
+           :stacking "fg"
+           :reserve (struts :distance "60px" :side "top")
+
+           :windowtype "dock"
+           :wm-ignore false
+    (bar)
+)
