@@ -1,4 +1,6 @@
-<h1 align="left">About</h1> 
+<h1 align="left"> :blue_book: About</h1> 
+
+This is my BSPWM dotfiles 
 
 </br>
 
@@ -12,7 +14,15 @@
  - Shell: [**`Zsh`**](https://github.com/zsh-users/zsh)
  - Editor: [**`Nvim`**](https://github.com/neovim/neovim)
 
-## Gallery
+</br>
+
+## 🖼️ Gallery
 ![gallery](demo/1.png)
 ![gallery](demo/2.png)
 ![gallery](demo/3.png)
+
+## 🚀 Features
+* Customizing software on the system.
+* Convenient custom configuration of Firefox.
+* Hotkeys for maximum productivity.
+* A very lightweight system that consumes less than 1Gb of memory.
